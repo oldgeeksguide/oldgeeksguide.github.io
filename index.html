@@ -1,48 +1,121 @@
 <!doctype html>
+<!-- vim: set expandtab shiftwidth=2 tabstop=2 softtabstop=2: -->
+
 <html>
 <title>Old Geek's Guide</title>
+
+<link href='http://fonts.googleapis.com/css?family=Gentium+Book+Basic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Andika' rel='stylesheet' type='text/css'>
+ 
 <style>
 
 html, body {
-    width: 80%;
-    margin: auto;
+  font-family: Gentium Book Basic, serif;
+  background: rgb(128, 128, 128);
+  width: 80%;
+  margin: auto;
 }
 
-h1, h2, h3 {
-    font-family: sans-serif;
+.main {
+  position: absolute;
+  left: 15vw;
+  top: 0;
+  height: 100%;
+  background: rgb(220,245,255);
+  width: 60vw;
+  margin: auto;
+  padding-left: 5vw;
+  padding-right: 5vw;
+  padding-top: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: Andika, sans-serif;
 }
 
 p {
-    font-size: 125%;
-    width: 90%;
-    margin: auto;
-    margin-bottom: 1ex;
+  font-size: 125%;
+  width: 90%;
+  margin: auto;
+  margin-bottom: 1ex;
 }
 
 p + p {
-    text-indent: 2em;
+  text-indent: 2em;
 }
 
 p.noindent {
-    text-indent: 0em;
+  text-indent: 0em;
 }
 
 pre {
-    font-size: 140%;
-    margin-left: 10%;
+  font-size: 140%;
+  margin-left: 10%;
+}
+
+li {
+  padding: 0.1em;
 }
 
 </style>
 
 <body>
-<h1>Old Geek's Guide</h1>
-<h2>SVG</h2>
-<ul>
-<li><a href="http://software.intel.com/en-us/blogs/2013/08/02/svg-turtles-all-the-way-down">SVG - Turtles All The Way Down</a></li>
-<li><a href="http://software.intel.com/en-us/blogs/2013/08/09/viewbox-a-window-into-the-soul-of-svg">Viewbox: A Window Into The Soul Of SVG</a></li>
-<li><a href="http://software.intel.com/en-us/blogs/2013/08/15/all-paths-lead-to-svg">All Paths Lead To SVG</a></li>
-<li><a href="http://software.intel.com/en-us/blogs/2013/09/06/roll-your-own-filtered-svg">Roll Your Own Filtered SVG</a></li>
-<li><a href="http://software.intel.com/en-us/blogs/2013/09/12/svg-filters-putting-pieces-together">SVG Filters - Putting Pieces Together</a></li>
-</ul>
+
+<div class="main">
+  <h1>Old Geek's Guide</h1>
+    <h2>
+      My <a href="http://software.intel.com/en-us/blogs/author/336780">Intel blog posts</a>:
+    </h2>
+  <h3>Javascript</h3>
+  <ul>
+    <li>
+      <a href="http://software.intel.com/en-us/html5/blogs/basic-javascript">Basic Javascript</a>
+    </li>
+    <li>
+      <a href="http://software.intel.com/en-us/html5/blogs/basic-javascript-patterns">Basic Javascript Patterns</a>
+    </li>
+    <li>
+      <a href="http://software.intel.com/en-us/html5/blogs/static-javascript-patterns">Static Javascript Patterns</a>
+    </li>
+    <li>
+      <a href="http://software.intel.com/en-us/html5/blogs/javascript-class-patterns">Javascript Class Patterns</a>
+    </li>
+    <li>
+      <a href="http://software.intel.com/en-us/html5/blogs/new-javascript-class-patterns">More Javascript Class Patterns</a>
+    </li>
+    <li>
+      <a href="http://software.intel.com/en-us/html5/blogs/javascript-this-that-and-the-other-thing">Javascript: This, That And The Other Thing</a>
+    </li>
+    <li>
+      <a href="http://software.intel.com/en-us/blogs/2013/07/12/strictly-speaking-javascript">Strictly Speaking Javascript</a>
+    </li>
+    <li>
+      <a href="http://software.intel.com/en-us/blogs/2013/07/19/jquery-the-birth-of-cool-javascript">Jquery - The Birth Of Cool Javascript</a>
+    </li>
+    <li>
+      <a href="http://software.intel.com/en-us/blogs/2013/07/26/json-is-the-new-xml-but-better">JSON Is The New XML (But Better)</a>
+    </li>
+  </ul>
+
+  <h3>SVG</h3>
+  <ul>
+    <li>
+      <a href="http://software.intel.com/en-us/blogs/2013/08/02/svg-turtles-all-the-way-down">SVG - Turtles All The Way Down</a>
+    </li>
+    <li>
+      <a href="http://software.intel.com/en-us/blogs/2013/08/09/viewbox-a-window-into-the-soul-of-svg">Viewbox: A Window Into The Soul Of SVG</a>
+    </li>
+    <li>
+      <a href="http://software.intel.com/en-us/blogs/2013/08/15/all-paths-lead-to-svg">All Paths Lead To SVG</a>
+    </li>
+    <li>
+      <a href="http://software.intel.com/en-us/blogs/2013/09/06/roll-your-own-filtered-svg">Roll Your Own Filtered SVG</a>
+    </li>
+    <li>
+      <a href="http://software.intel.com/en-us/blogs/2013/09/12/svg-filters-putting-pieces-together">SVG Filters - Putting Pieces Together</a>
+    </li>
+  </ul>
+</div>
+
 </body>
 </html>
