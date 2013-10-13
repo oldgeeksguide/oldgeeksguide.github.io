@@ -12,25 +12,40 @@
 html, body {
   font-family: Gentium Book Basic, serif;
   background: rgb(128, 128, 128);
-  width: 80%;
-  margin: auto;
+  margin: 0;
+  padding: 0;
+  top: 0;
+  left: 0;
+  height: 100%;
 }
 
 .main {
   position: absolute;
   left: 15vw;
   top: 0;
-  height: 100%;
+  min-height: 100vh;
   background: rgb(220,245,255);
   width: 60vw;
-  margin: auto;
   padding-left: 5vw;
   padding-right: 5vw;
-  padding-top: 0;
+  padding-top: 0px;
+  padding-bottom: 0;
+}
+
+.header-main {
+  width: 70vw;
+  height: 100px;
+  margin-left: -5vw;
+  padding-left: 20px;
+  padding-bottom: 0px;
+  background: black;
+  white-space: nowrap;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: Andika, sans-serif;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 p {
@@ -53,70 +68,89 @@ pre {
   margin-left: 10%;
 }
 
+ul {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
 li {
   padding: 0.1em;
+}
+
+header, .header-main {
+  color: white;
+  background: black;
+  height: 100px;
+}
+
+.header-main a {
+  color: white;
 }
 
 </style>
 
 <body>
+  <header>
+  </header>
 
-<div class="main">
-  <h1>Old Geek's Guide</h1>
-  <h3>twitter: <a href="https://twitter.com/oldgeeksguide">@OldGeeksGuide</a></h3>
-  <h2>
-    My <a href="http://software.intel.com/en-us/blogs/author/336780">Intel blog posts</a>:
-  </h2>
-  <h3>Javascript</h3>
-  <ul>
-    <li>
-      <a href="http://software.intel.com/en-us/html5/blogs/basic-javascript">Basic Javascript</a>
-    </li>
-    <li>
-      <a href="http://software.intel.com/en-us/html5/blogs/basic-javascript-patterns">Basic Javascript Patterns</a>
-    </li>
-    <li>
-      <a href="http://software.intel.com/en-us/html5/blogs/static-javascript-patterns">Static Javascript Patterns</a>
-    </li>
-    <li>
-      <a href="http://software.intel.com/en-us/html5/blogs/javascript-class-patterns">Javascript Class Patterns</a>
-    </li>
-    <li>
-      <a href="http://software.intel.com/en-us/html5/blogs/new-javascript-class-patterns">More Javascript Class Patterns</a>
-    </li>
-    <li>
-      <a href="http://software.intel.com/en-us/html5/blogs/javascript-this-that-and-the-other-thing">Javascript: This, That And The Other Thing</a>
-    </li>
-    <li>
-      <a href="http://software.intel.com/en-us/blogs/2013/07/12/strictly-speaking-javascript">Strictly Speaking Javascript</a>
-    </li>
-    <li>
-      <a href="http://software.intel.com/en-us/blogs/2013/07/19/jquery-the-birth-of-cool-javascript">Jquery - The Birth Of Cool Javascript</a>
-    </li>
-    <li>
-      <a href="http://software.intel.com/en-us/blogs/2013/07/26/json-is-the-new-xml-but-better">JSON Is The New XML (But Better)</a>
-    </li>
-  </ul>
+  <div class="main">
+    <div class="header-main">
+      <h1>Old Geek's Guide</h1>
+      <h3>twitter: <a href="https://twitter.com/oldgeeksguide">@OldGeeksGuide</a></h3>
+    </div>
+    <h3>
+      My <a href="http://software.intel.com/en-us/blogs/author/336780">Intel blog posts</a>:
+    </h3>
+    <h4>Javascript</h3>
+    <ul>
+      <li>
+        <a href="http://software.intel.com/en-us/html5/blogs/basic-javascript">Basic Javascript</a>
+      </li>
+      <li>
+        <a href="http://software.intel.com/en-us/html5/blogs/basic-javascript-patterns">Basic Javascript Patterns</a>
+      </li>
+      <li>
+        <a href="http://software.intel.com/en-us/html5/blogs/static-javascript-patterns">Static Javascript Patterns</a>
+      </li>
+      <li>
+        <a href="http://software.intel.com/en-us/html5/blogs/javascript-class-patterns">Javascript Class Patterns</a>
+      </li>
+      <li>
+        <a href="http://software.intel.com/en-us/html5/blogs/new-javascript-class-patterns">More Javascript Class Patterns</a>
+      </li>
+      <li>
+        <a href="http://software.intel.com/en-us/html5/blogs/javascript-this-that-and-the-other-thing">Javascript: This, That And The Other Thing</a>
+      </li>
+      <li>
+        <a href="http://software.intel.com/en-us/blogs/2013/07/12/strictly-speaking-javascript">Strictly Speaking Javascript</a>
+      </li>
+      <li>
+        <a href="http://software.intel.com/en-us/blogs/2013/07/19/jquery-the-birth-of-cool-javascript">Jquery - The Birth Of Cool Javascript</a>
+      </li>
+      <li>
+        <a href="http://software.intel.com/en-us/blogs/2013/07/26/json-is-the-new-xml-but-better">JSON Is The New XML (But Better)</a>
+      </li>
+    </ul>
 
-  <h3>SVG</h3>
-  <ul>
-    <li>
-      <a href="http://software.intel.com/en-us/blogs/2013/08/02/svg-turtles-all-the-way-down">SVG - Turtles All The Way Down</a>
-    </li>
-    <li>
-      <a href="http://software.intel.com/en-us/blogs/2013/08/09/viewbox-a-window-into-the-soul-of-svg">Viewbox: A Window Into The Soul Of SVG</a>
-    </li>
-    <li>
-      <a href="http://software.intel.com/en-us/blogs/2013/08/15/all-paths-lead-to-svg">All Paths Lead To SVG</a>
-    </li>
-    <li>
-      <a href="http://software.intel.com/en-us/blogs/2013/09/06/roll-your-own-filtered-svg">Roll Your Own Filtered SVG</a>
-    </li>
-    <li>
-      <a href="http://software.intel.com/en-us/blogs/2013/09/12/svg-filters-putting-pieces-together">SVG Filters - Putting Pieces Together</a>
-    </li>
-  </ul>
-</div>
+    <h3>SVG</h3>
+    <ul>
+      <li>
+        <a href="http://software.intel.com/en-us/blogs/2013/08/02/svg-turtles-all-the-way-down">SVG - Turtles All The Way Down</a>
+      </li>
+      <li>
+        <a href="http://software.intel.com/en-us/blogs/2013/08/09/viewbox-a-window-into-the-soul-of-svg">Viewbox: A Window Into The Soul Of SVG</a>
+      </li>
+      <li>
+        <a href="http://software.intel.com/en-us/blogs/2013/08/15/all-paths-lead-to-svg">All Paths Lead To SVG</a>
+      </li>
+      <li>
+        <a href="http://software.intel.com/en-us/blogs/2013/09/06/roll-your-own-filtered-svg">Roll Your Own Filtered SVG</a>
+      </li>
+      <li>
+        <a href="http://software.intel.com/en-us/blogs/2013/09/12/svg-filters-putting-pieces-together">SVG Filters - Putting Pieces Together</a>
+      </li>
+    </ul>
+  </div>
 
 </body>
 </html>
