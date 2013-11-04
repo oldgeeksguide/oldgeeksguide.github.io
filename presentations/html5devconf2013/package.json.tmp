@@ -1,0 +1,8 @@
+{
+  "name": "D-to-A with NW",
+  "main": "dale.html",
+  "window": {
+    "toolbar": false,
+    "fullscreen": true
+  }
+}

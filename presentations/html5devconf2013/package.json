@@ -1,0 +1,8 @@
+{
+  "name": "D-to-A_with_NW",
+  "main": "wtod.html",
+  "window": {
+    "toolbar": false,
+    "fullscreen": true
+  }
+}

@@ -1,0 +1,162 @@
+<!doctype html>
+
+<html>
+<meta charset='UTF-8'>
+<head>
+<style>
+svg {
+    stroke: black;
+    stroke-width: 1px;
+    fill: white;
+    border: solid 1px blue;
+}
+svg text {
+    stroke: none;
+    fill: black;
+}
+
+svg path {
+    fill: none;
+}
+
+</style>
+<script>
+</script>
+</head>
+<body>
+<svg width=800 height=600 viewBox="0 0 800 600">
+    <path d="M575,90 C405,150 580,450 425,530"/> <!-- Scheme -> js -->
+    <path d="M420,310 C430,330 380,500 380,510"/> <!-- Python -> js -->
+    <path d="M260,360 C260,420 350,480 350,510"/> <!-- Java -> js -->
+    <path d="M130,150 C120,280 300,540 335,540"/> <!-- C -> js -->
+    <path d="M620,320 C620,480 500,550 425,550"/> <!-- Self -> js -->
+    <path d="M570,220 C520,280 530,540 425,540"/> <!-- Smalltalk -> js -->
+
+    <path d="M730,40 L620,320"/> <!-- lisp -> self -->
+    <path d="M730,40 L575,90"/> <!-- lisp -> Scheme -->
+    <path d="M730,40 L570,220"/> <!-- lisp -> Smalltalk -->
+    <path d="M575,90 L570,220"/> <!-- Scheme -> Smalltalk -->
+    <path d="M400,160 L570,220"/> <!-- Simula -> Smalltalk -->
+    <path d="M80,60 L130,150"/> <!-- Fortran -> C -->
+    <path d="M130,150 L220,250"/> <!-- C -> C++ -->
+    <path d="M220,250 L260,360"/> <!-- C++ -> Java -->
+    <path d="M570,220 L420,310"/> <!-- Smalltalk -> Python -->
+    <path d="M265,90 L400,160"/> <!-- Algol -> Simula -->
+    <path d="M265,90 L130,150"/> <!-- Algol -> C -->
+    
+    
+    <g transform="translate(10)">
+        <rect x="10" y="10" width="100" height="60"/>
+        <text x="62" y="37" font-size="100%" text-anchor="middle" dominant-baseline="central">FORTRAN</text>
+    </g>
+
+    <g transform="translate(340, 110)">
+        <rect x="10" y="10" width="100" height="60"/>
+        <text x="62" y="37" font-size="100%" text-anchor="middle" dominant-baseline="central">Simula</text>
+    </g>
+
+    <g transform="translate(500, 170)">
+        <rect x="10" y="10" width="100" height="60" rx="20" ry="20"/>
+        <text x="62" y="37" font-size="100%" text-anchor="middle" dominant-baseline="central">Smalltalk</text>
+    </g>
+
+    <g transform="translate(370, 280)">
+        <rect x="10" y="10" width="100" height="60" rx="10" ry="10"/>
+        <text x="62" y="37" font-size="100%" text-anchor="middle" dominant-baseline="central">Python</text>
+    </g>
+
+    <g transform="translate(560, 280)">
+        <rect x="10" y="10" width="100" height="60" rx="20" ry="20"/>
+        <text x="62" y="37" font-size="100%" text-anchor="middle" dominant-baseline="central">Self</text>
+    </g>
+
+    <g transform="translate(80, 100)">
+        <rect x="10" y="10" width="60" height="60"/>
+        <text x="40" y="40" font-size="100%" text-anchor="middle" dominant-baseline="central">C</text>
+    </g>
+
+    <g transform="translate(170, 200)">
+        <rect x="10" y="10" width="60" height="60"/>
+        <text x="40" y="40" font-size="100%" text-anchor="middle" dominant-baseline="central">C++</text>
+    </g>
+
+    <g transform="translate(220, 320)">
+        <rect x="10" y="10" width="60" height="60"/>
+        <text x="40" y="40" font-size="100%" text-anchor="middle" dominant-baseline="central">Java</text>
+    </g>
+
+    <g transform="translate(670)">
+        <ellipse cx="62" cy="37" rx="50" ry="25"/>
+        <text x="62" y="37" font-size="100%" text-anchor="middle" dominant-baseline="central">(Lisp)</text>
+    </g>
+
+    <g transform="translate(525, 50)">
+        <ellipse cx="62" cy="37" rx="50" ry="25"/>
+        <text x="62" y="37" font-size="100%" text-anchor="middle" dominant-baseline="central">Scheme</text>
+    </g>
+
+    <g transform="translate(375)">
+        <rect x="10" y="10" width="60" height="60"/>
+        <text x="40" y="40" font-size="100%" text-anchor="middle" dominant-baseline="central">APL</text>
+    </g>
+
+    <g transform="translate(200, 40)">
+        <rect x="10" y="10" width="90" height="60"/>
+        <text x="55" y="40" font-size="100%" text-anchor="middle" dominant-baseline="central">Algol</text>
+    </g>
+
+    <g transform="translate(325, 500)">
+        <rect x="10" y="10" width="90" height="60" rx="5" ry="5"/>
+        <text x="55" y="40" font-size="100%" text-anchor="middle" dominant-baseline="central">javaScript</text>
+    </g>
+
+</svg>
+<svg width=800 height=600 viewBox="0 0 800 600">
+    <path d="M260,150 L410,300"/> <!-- Python -> js -->
+    <path d="M430,170 L370,300"/> <!-- Ruby -> js -->
+    <path d="M600,300 C615,200 400,150 400,300"/> <!-- CoffeeScript -> js -->
+    <path d="M400,300 C400,400 615,450 600,300"/> <!-- CoffeeScript -> js -->
+    <path d="M390,300 L240,440"/> <!-- JS -> Dart -->
+    <path d="M380,300 L410,450"/> <!-- JS -> TypeScript -->
+    <path d="M200,300 C160,230 350,170 350,300"/> <!-- Good Parts -> js -->
+    <path d="M350,300 C350,370 160,370 200,300"/> <!-- JS -> Good Parts -->
+
+    <g transform="translate(325, 250)">
+        <rect x="10" y="10" width="90" height="60"/>
+        <text x="55" y="40" font-size="100%" text-anchor="middle" dominant-baseline="central">javaScript</text>
+    </g>
+
+    <g transform="translate(100, 250)">
+        <rect x="10" y="10" width="140" height="60"/>
+        <text x="80" y="40" font-size="100%" text-anchor="middle" dominant-baseline="central">The Good Parts</text>
+    </g>
+
+    <g transform="translate(175, 100)">
+        <rect x="10" y="10" width="90" height="60"/>
+        <text x="55" y="40" font-size="100%" text-anchor="middle" dominant-baseline="central">Python</text>
+    </g>
+
+    <g transform="translate(375, 120)">
+        <rect x="10" y="10" width="80" height="60"/>
+        <text x="50" y="40" font-size="100%" text-anchor="middle" dominant-baseline="central">Ruby</text>
+    </g>
+
+    <g transform="translate(525, 250)">
+        <rect x="10" y="10" width="120" height="60"/>
+        <text x="70" y="40" font-size="100%" text-anchor="middle" dominant-baseline="central">CoffeeScript</text>
+    </g>
+
+    <g transform="translate(190, 390)">
+        <rect x="10" y="10" width="60" height="60"/>
+        <text x="40" y="40" font-size="100%" text-anchor="middle" dominant-baseline="central">Dart</text>
+    </g>
+
+    <g transform="translate(330, 400)">
+        <rect x="10" y="10" width="120" height="60"/>
+        <text x="70" y="40" font-size="100%" text-anchor="middle" dominant-baseline="central">TypeScript</text>
+    </g>
+
+</svg>
+</body>
+</html>
+

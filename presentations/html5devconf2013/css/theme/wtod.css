@@ -1,0 +1,473 @@
+/*** @import url(https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic); ***/
+/**
+ * Default theme for reveal.js.
+ *
+ * Copyright (C) 2011-2012 Hakim El Hattab, http://hakim.se
+ */
+
+/*********************************************
+ * GLOBAL STYLES
+ *********************************************/
+.reveal {
+  /* font-family: 'Open Sans', "Lato", sans-serif; */
+  font-family: 'Open Sans', sans-serif;
+  font-size: 36px;
+  font-weight: 200;
+  letter-spacing: -0.02em;
+  color: rgb(200,200,190); }
+
+::selection {
+  color: white;
+  background: #ff5e99;
+  text-shadow: none; }
+
+/*********************************************
+ * HEADERS
+ *********************************************/
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal h5,
+.reveal h6 {
+  margin: 0 0 20px 0;
+  color: #eeeeee;
+  /* font-family: "League Gothic", Impact, sans-serif; */
+  font-family: Quicksand, Open Sans, sans-serif;
+  line-height: 0.9em;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-shadow: 0px 0px 6px rgba(0, 0, 0, 0.2); }
+
+.reveal h1 {
+  text-shadow: 0 1px 0 #cccccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbbbbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaaaaa, 0 6px 1px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.3), 0 3px 5px rgba(0, 0, 0, 0.2), 0 5px 10px rgba(0, 0, 0, 0.25), 0 20px 20px rgba(0, 0, 0, 0.15); }
+
+/*********************************************
+ * LINKS
+ *********************************************/
+.reveal a:not(.image) {
+  color: #13daec;
+  text-decoration: none;
+  -webkit-transition: color .15s ease;
+  -moz-transition: color .15s ease;
+  -ms-transition: color .15s ease;
+  -o-transition: color .15s ease;
+  transition: color .15s ease; }
+
+.reveal a:not(.image):hover {
+  color: #71e9f4;
+  text-shadow: none;
+  border: none; }
+
+.reveal .roll span:after {
+  color: #fff;
+  background: #0d99a5; }
+
+/*********************************************
+ * IMAGES
+ *********************************************/
+.reveal section img {
+  margin: 15px 0px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 4px solid #eeeeee;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+  -webkit-transition: all .2s linear;
+  -moz-transition: all .2s linear;
+  -ms-transition: all .2s linear;
+  -o-transition: all .2s linear;
+  transition: all .2s linear; }
+
+.reveal a:hover img {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: #13daec;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.55); }
+
+/*********************************************
+ * NAVIGATION CONTROLS
+ *********************************************/
+.reveal .controls div.navigate-left,
+.reveal .controls div.navigate-left.enabled {
+  border-right-color: #13daec;
+	opacity: 0;
+}
+
+.reveal .controls div.navigate-right,
+.reveal .controls div.navigate-right.enabled {
+  border-left-color: #13daec;
+	opacity: 0;
+}
+
+.reveal .controls div.navigate-right.enabled.fragmented {
+	opacity: 0.3;
+}
+
+.reveal .controls div.navigate-up,
+.reveal .controls div.navigate-up.enabled {
+  border-bottom-color: #13daec;
+}
+
+.reveal .controls div.navigate-down,
+.reveal .controls div.navigate-down.enabled {
+  border-top-color: #13daec;
+}
+
+.reveal .controls div.navigate-left.enabled:hover {
+  border-right-color: #71e9f4;
+}
+
+.reveal .controls div.navigate-right.enabled:hover {
+  border-left-color: #71e9f4;
+}
+
+.reveal .controls div.navigate-up.enabled:hover {
+  border-bottom-color: #71e9f4;
+}
+
+.reveal .controls div.navigate-down.enabled:hover {
+  border-top-color: #71e9f4;
+}
+
+/*********************************************
+ * PROGRESS BAR
+ *********************************************/
+.reveal .progress {
+  background: rgba(0, 0, 0, 0.2); }
+
+.reveal .progress span {
+	/* DALE */
+  /*** background: #13daec; ***/
+  background: rgb(40,40,50);
+  -webkit-transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985);
+  -moz-transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985);
+  -ms-transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985);
+  -o-transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985);
+  transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985); }
+
+
+
+html, body {
+    background-color: rgb(0,0,0);
+    color: rgb(200,200,190);
+}
+
+.reveal code {
+    font-family: Source Code Pro, monospace;
+}
+
+.reveal pre code {
+    padding: 5vh;
+    width: 80vh;
+    /* width: 90vh; */
+		margin: auto;
+		/* background-color: rgb(50,45,45); */
+		background-color: rgb(65,75,85);
+}
+
+/***
+.reveal pre code.es6 {
+		background-color: rgb(65,75,85);
+}
+***/
+
+
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal h5,
+.reveal h6
+{
+    font-family: Quicksand, Open Sans, sans-serif;
+    text-shadow: none;
+    color: rgb(200,200,190);
+    text-transform: none;
+		-moz-hyphens: none;
+		-ms-hyphens: none;
+		-webkit-hyphens: none;
+		-blink-hyphens: none;
+		hyphens: none;
+		padding-bottom: 2vh;
+}
+
+/* Use ~ to select sibling following, + for immediately following */
+.reveal h1 + p,
+.reveal h2 + p,
+.reveal h3 + p,
+.reveal h4 + p,
+.reveal h5 + p,
+.reveal h6 + p
+{
+    padding-top: 1em;
+}
+
+
+
+/* 
+.future h1,
+.future h2,
+.future h3
+{
+    animation: none;
+    -webkit-animation: none;
+}
+*/
+
+/*** Cool, if I put the glowtext anim in past, then it doesn't glow
+when going to a previous slide (hasn't changed, I guess)
+***/
+.past h1,
+.past h2,
+.past h3
+{
+    animation: glowtext 1.5s;
+    -webkit-animation: glowtext 1.5s;
+}
+
+.present h1,
+.present h2,
+.present h3
+{
+    animation: glowtext 1.5s;
+    -webkit-animation: glowtext 1.5s;
+}
+
+.glow {
+    text-shadow: 0 0 0 rgb(200,200,190);
+}
+
+.reveal .fragment .fragdelay {
+	opacity: 0;
+}
+
+/*** .reveal .fragment.visible .fragdelay { ***/
+.reveal .visible .fragdelay {
+	transition: all 0.25s ease-in 0.5s;
+	opacity: 1;
+}
+
+
+
+
+@-webkit-keyframes glowtext {
+0% {text-shadow: none;}
+/***
+    30% {text-shadow: 0 0 20px white, 0 0 30px white;}
+    30% {text-shadow:  0 0 3px rgb(200,200,150), 0 0 5px rgb(200,200,150), 0 0 10px rgb(200,200,150), 0 0 20px rgb(200,200,150), 0 0 30px rgb(200,200,150);}
+    30% {text-shadow: 0 0 3px rgb(200,200,150), 0 0 10px rgb(200,200,150);}
+ ***/
+    30% {text-shadow:  0 0 3px rgb(200,200,150), 0 0 5px rgb(200,200,150), 0 0 10px rgb(200,200,150), 0 0 20px rgb(200,200,150);}
+100% {text-shadow: none;}
+}
+
+
+@keyframes glowtext {
+0% {text-shadow: none;}
+30% {text-shadow:  0 0 3px rgb(200,200,150), 0 0 5px rgb(200,200,150), 0 0 10px rgb(200,200,150), 0 0 20px rgb(200,200,150);}
+100% {text-shadow: none;}
+}
+
+/***
+.future .delay {
+	opacity: 0;
+}
+
+.present .delay,
+.past .delay
+{
+	opacity: 1;
+	transition: all 0.25s ease-in 1.2s;
+}
+***/
+
+.future .delay,
+.future .delay1,
+.future .delay2,
+.future .delay25,
+.future .delay3,
+.future .delay4,
+.future .delay45,
+.future .delay5,
+.future .delay6 {
+	opacity: 0;
+}
+
+.present .delay,
+.past .delay,
+.present .delay1,
+.past .delay1
+{
+	opacity: 1;
+	transition: all 0.25s ease-in 1.0s;
+}
+
+
+.present .delay2,
+.past .delay2
+{
+	opacity: 1;
+	transition: all 0.25s ease-in 2.0s;
+}
+
+.present .delay25,
+.past .delay25
+{
+	opacity: 1;
+	transition: all 0.25s ease-in 2.5s;
+}
+
+
+.present .delay3,
+.past .delay3
+{
+	opacity: 1;
+	transition: all 0.25s ease-in 3.0s;
+}
+
+.present .delay4,
+.past .delay4
+{
+	opacity: 1;
+	transition: all 0.25s ease-in 4.0s;
+}
+
+.present .delay45,
+.past .delay45
+{
+	opacity: 1;
+	transition: all 0.25s ease-in 4.5s;
+}
+
+
+.present .delay5,
+.past .delay5
+{
+	opacity: 1;
+	transition: all 0.25s ease-in 5.0s;
+}
+
+.present .delay6,
+.past .delay6
+{
+	opacity: 1;
+	transition: all 0.25s ease-in 6.0s;
+}
+
+.reveal ul li {
+/***
+		background: url('file:///Users/schouten/work/presentations/html5devconf/reveal.js/nw-icon.png') no-repeat top left;
+    list-style-image: url('../../nw-icon.png');
+***/
+    list-style-type: none;
+    padding: .7ex;
+    /* padding-left: 0; */
+}
+
+.reveal ul li:before {
+    /* content: "\27B2"; */
+    content: "\279C";
+    color: rgb(0,0,128);
+    padding-right: 0.7em;
+    margin-left: -0.5em;
+}
+
+
+.reveal ul li ul li:before {
+    /* content: "\2726"; */
+    content: "";
+    padding-right: 0.5em;
+    margin-left: -0.3em;
+}
+
+.reveal ul.checkbox li {
+    list-style-type: none;
+}
+
+/* Special chars listed at http://ikreator.com/special-characters/ */
+.reveal ul.checkbox li.yes:before  {
+	content: "\2713";
+  padding-right: 0.1em;
+	color: green;
+}
+
+.reveal ul.checkbox li.no:before {
+	content: "\2718";
+  padding-right: 0.3em;
+	color: red;
+}
+
+.reveal ul.checkbox li.maybe:before {
+	content: "\223C";
+  padding-right: 0.3em;
+	color: yellow;
+}
+
+.reveal p {
+    word-spacing: 0.3em;
+}
+
+svg {
+		margin: auto;
+    stroke: none;
+    fill: none;
+    /***
+    stroke: rgb(200,200,190);
+    stroke-width: 1px;
+    fill: white;
+    border: solid 1px blue;
+    ***/
+    font-size: 60%;
+}
+svg text {
+    stroke: none;
+    fill: rgb(200,200,190);
+}
+
+svg path {
+    fill: none;
+    stroke: rgb(200,200,190);
+    stroke-width: 0.3px;
+}
+
+.reveal iframe {
+	width: 90vw;
+	height: 60vh;
+}
+
+.reveal .slides section img {
+	border: none;
+  background: none;
+}
+
+#nw-package rect {
+	fill: rgb(0,0,0);
+}
+
+.reveal #nw-package rect.textrect {
+	fill: none;
+	stroke-width: 0.2;
+	stroke: blue;
+  text-anchor: middle;
+  dominant-baseline: central;
+}
+
+#nw-package text {
+	font-size: 20%;
+	border: 1px solid red;
+}
+
+.reveal dt, .reveal dd {
+	display: inline-block;
+}
+
+.reveal dt {
+	left: 5vw;
+}
+
+
+.reveal .red {
+	color: rgb(225,40,40); 
+}
+
+.reveal .oops {
+    text-decoration: line-through;
+}

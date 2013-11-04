@@ -1,0 +1,26 @@
+
+html, body {
+    background-color: black;
+    color: white;
+}
+
+.reveal h1 {
+    font-family: Quicksand;
+}
+
+.glow {
+    margin: 20px;
+    margin-left: 500px;
+    padding: 10px;
+    border: 1px solid white;
+    text-shadow: 0 0 0 white;
+    animation: glowtext 3s;
+    font-size: 100px;
+}
+
+@keyframes glowtext {
+0% {text-shadow: 0 0 0 white;}
+50% {text-shadow: 0 0 5px white, 0 0 10px white, 0 0 20px white, 0 0 30px white;}
+100% {text-shadow: 0 0 0 white;}
+}
+

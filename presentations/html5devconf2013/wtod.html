@@ -1,0 +1,724 @@
+<!doctype html>
+<!-- vim: set noexpandtab shiftwidth=2 tabstop=2 softtabstop=2: -->
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+<!--  I think I've got everything I need locally in lib/fonts -->
+<link href='http://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
+		<title>WebApp to DesktopApp with Node-Webkit</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/wtod.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<!-- DALE -->
+	<script src="wtod.js" type="text/javascript"></script>
+
+	<script>
+		function go() {
+			global.setupMenus();
+		}
+	</script>
+	<body onload="go()">
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h2 class=glow >WebApp to DesktopApp with Node-Webkit</h2>
+					<img src="icon-node-webkit.png" width="15%"/>
+					<p>
+						Dale Schouten
+					</p>
+					<p>
+						twitter: @OldGeeksGuide
+					</p>
+					<p>
+						October 2013
+					</p>
+				</section>
+
+				<section>
+					<h3>Me</h3>
+					<pre><code data-trim contenteditable>
+var printf = alert;
+printf("Hello World");
+					</code></pre>
+
+					<pre><code data-trim contenteditable>
+var printf = function(s) {console.log(s); alert(s);};
+printf("Hello World");
+					</code></pre>
+				</section>
+
+				<section>
+					<h3>Science</h3>
+					<iframe src="qotd.html">
+					</iframe>
+				</section>
+
+
+				<section>
+					<h3>Requirements</h3>
+					<ul>
+						<li style="position: absolute; top: 10vh; left: 15vh;" >Easy to use - Simple GUI</li>
+						<li style="position: absolute; top: 20vh; left: 15vh;" >Easy to add questions - Edit txt file</li>
+						<li style="position: absolute; top: 30vh; left: 15vh;" >No Duplicates - Automatic</li>
+						<li style="position: absolute; top: 40vh; left: 15vh;" >Cross Platform - Windows and Mac</li>
+						<li style="position: absolute; top: 50vh; left: 15vh;" >Packaged - Simple to run/install</li>
+						<li style="position: absolute; top: 60vh; left: 15vh;" >Portable - change computers</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>HTML</h3>
+					<ul class="checkbox">
+						<li class="yes" style="position: absolute; top: 10vh; left: 11vh;" >Easy to use</li>
+						<li class="no" style="position: absolute; top: 50vh; left: 61vh;" >Easy to add questions</li>
+						<li class="no" style="position: absolute; top: 60vh; left: 61vh;" >No Duplicates</li>
+						<li class="yes" style="position: absolute; top: 20vh; left: 11vh;" >Cross Platform</li>
+						<li class="maybe" style="position: absolute; top: 30vh; left: 41vh;" >Packaged</li>
+						<li class="maybe" style="position: absolute; top: 40vh; left: 41vh;" >Portable</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Desktop</h3>
+					<ul class="checkbox">
+						<li class="no" style="position: absolute; top: 10vh; left: 11vh;" >Easy to use</li>
+						<li class="yes" style="position: absolute; top: 50vh; left: 61vh;" >Easy to add questions</li>
+						<li class="yes" style="position: absolute; top: 60vh; left: 61vh;" >No Duplicates</li>
+						<li class="no" style="position: absolute; top: 20vh; left: 11vh;" >Cross Platform</li>
+						<li class="maybe" style="position: absolute; top: 30vh; left: 41vh;" >Packaged</li>
+						<li class="maybe" style="position: absolute; top: 40vh; left: 41vh;" >Portable</li>
+					</ul>
+				</section>
+				
+				<section>
+					<h3>Intersection</h3>
+					<div>
+					<svg width="100%" height="70%" viewBox="0 0 100 70">
+						<circle cx="50" cy="20" r="17" stroke="blue" stroke-width="0.3px"/>
+						<text x="50" y="17" fill="blue" stroke="none" font-size="17%" text-anchor="middle" dominant-baseline="central" opacity="0.8">HTML/CSS/JS</text>
+						<circle cx="50" cy="40" r="17" stroke="green" stroke-width="0.3px"/>
+						<text x="50" y="45" fill="blue" stroke="none" font-size="17%" text-anchor="middle"  dominant-baseline="central" opacity="0.8">Local File/API's</text>
+						<text x="50" y="30" fill="blue" stroke="none" font-size="17%" text-anchor="middle"  dominant-baseline="central">Node-Webkit</text>
+					</svg>
+					</div>
+				</section>
+
+				<section>
+					<h3>Node</h3>
+					<ul>
+						<li>Server</li>
+						<li>(A)synchronicity</li>
+						<li>Access</li>
+						<li>Modules
+							<ul><li>fs, os, undescore, . . .</li></ul>
+						</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Webkit</h3>
+
+					<ul>
+						<li><span class="oops">Webkit</span></li>
+						<li><span class="oops">Blink</span></li>
+						<li>Chromium</li>
+						<li>Libraries
+							<ul><li>jQuery, d3, three.js, . . .</li></ul>
+						</li>
+						<li>Frameworks
+							<ul><li>Bootstrap, Topcoat, . . .</li></ul>
+						</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Node-Webkit</h3>
+					<svg id="nw-puzzle" width="90%" height="65%" viewBox="0 0 110 80">
+						<path d="M54,10 l45,0 l0,60 l-45,0
+										" style="stroke: blue;" />
+						<path d="M10,10 l45,0 l0,30
+									  l3,0
+										c10,0 -5,-10, 10,-10
+										c10,0 10,10, 10,15
+										c0,5 0,15, -10,15
+										c-10,0 0,-10, -10,-10
+									  l-3,0
+										l0,20 l-45,0 l0,-60
+										" style="stroke: green;" />
+										
+						<text x="70" y="48" font-family="Source Code Pro" font-size="35%" text-anchor="middle" >V8</text>
+						<text x="78" y="25" font-family="Source Code Pro" font-size="35%" text-anchor="middle" >Webkit</text>
+						<text x="33" y="25" font-family="Source Code Pro" font-size="35%" text-anchor="middle" >Node.js</text>
+					</svg>
+				</section>
+
+
+				<section>
+					<h3>Package</h3>
+					<svg id="nw-package" width="100%" height="70%" viewBox="0 0 100 70">
+						<defs>
+							<filter id="Blur" filterUnits="userSpaceOnUse" x="-20" y="-20" width="140" height="140">
+								<feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"/>
+							</filter>
+							<filter id="Blur2" filterUnits="userSpaceOnUse" x="-20" y="-20" width="140" height="140">
+								<feGaussianBlur in="SourceGraphic" stdDeviation="1" result="blur"/>
+							</filter>
+						</defs>
+						<path class="thin-line" d="M80,20 C80,60 50,30 50,60"/>
+						<path class="thin-line" d="M20,20 C20,60 50,30 50,60"/>
+						<g transform="translate(60, 0)">
+							<rect x="2" y="0" width="36" height="34" filter="url(#Blur)"/>
+							<rect class="textrect" x="0" y="1" width="40" height="8" />
+							<text x="20" y="5" font-family="Source Code Pro" text-anchor="middle" dominant-baseline="central">package.json</text>
+							<rect class="textrect" x="0" y="9" width="40" height="8" />
+							<text x="20" y="13" text-anchor="middle" dominant-baseline="central">
+								HTML/CSS/JS
+							</text>
+							<rect class="textrect" x="0" y="17" width="40" height="8" />
+							<text x="20" y="21" text-anchor="middle" dominant-baseline="central">
+								Resources
+							</text>
+							<rect class="textrect" x="0" y="25" width="40" height="8" />
+							<text x="20" y="29" text-anchor="middle" dominant-baseline="central">
+								. . .
+							</text>
+						</g>
+						<g transform="translate(0, 6)">
+							<rect x="2" y="0" width="36" height="24" filter="url(#Blur)"/>
+							<rect class="textrect" x="3" y="8" width="34" height="8" style="stroke: green" />
+							<text x="20" y="12" text-anchor="middle" dominant-baseline="central">
+								Node-Webkit
+							</text>
+						</g>
+						<g transform="translate(20, 50)">
+							<rect x="0" y="-3" width="66" height="22" filter="url(#Blur)"/>
+							<rect class="textrect" x="5" y="0" width="50" height="8" style="stroke: none" />
+							<text x="30" y="4" text-anchor="middle" dominant-baseline="central">
+								Stand Alone Executable
+							</text>
+						</g>
+						<g transform="translate(52,38)">
+							<rect x="13" y="1" width="9" height="6" filter="url(#Blur2)"/>
+							<text x="9" y="5" font-family="Source Code Pro" text-anchor="left" >
+								zip app.nw
+							</text>
+						</g>
+					</svg>
+				</section>
+
+				<section>
+					<h3>package.json</h3>
+					<pre><code data-trim contenteditable>
+{
+  "name": "My App",
+  "main": "index.html",
+  "window": {
+    "toolbar": false,
+    "resizable": true,
+    "fullscreen": false,
+    "width": 800,
+    "height": 600
+  },
+  "dependencies": {
+    "underscore": "~1.4.4",
+  },
+  "js-flags": "--harmony-collections"
+}
+					</code></pre>
+				</section>
+
+				<section>
+					<h3>npm</h3>
+					<ul>
+						<li><code>npm install</code></li>
+						<li>node_modules/</li>
+						<li>zip it</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Platforms</h3>
+					<!--
+						<dl>
+							<dt><img width="100px" style="float: left; margin-bottom:-25px; margin-right:1em;" src="Microsoft_Windows_7_logo.svg"/></dt>
+								<dd><br/><code>cat nw app.nw &gt; foo.exe </code><br/></dd>
+							<dt><img width="140px" style="float: left; margin-bottom:-35px; margin-right:1em;" src="Mac_OS_Logo_without_Text.svg" /></dt>
+								<dd><br/><code>cp app.nw nw/Contents/Resources/</code><br/></dd>
+							<dt><img width="100px" style="float: left; margin-bottom:-35px; margin-right:1em;" src="Tux-shadow.svg" /></dt>
+							<dd><br/><code>cat nw app.nw &gt; foo </code><br>/</dd>
+						</dl>
+					-->
+						<!--
+						<div style="left: 5vw; padding: 20px; margin-left:-3.2em;">
+							<img width="100px" style="margin-bottom:-25px; margin-right:1em;" src="Microsoft_Windows_7_logo.svg"/>
+							<code>cat nw app.nw &gt; foo.exe </code>
+						</div>
+						<div style="left: 5vw; padding: 20px;">
+							<img width="140px" style="margin-bottom:-35px; margin-left: 1em; margin-right:1em;" src="Mac_OS_Logo_without_Text.svg" />
+							<code>cp app.nw nw/Contents/Resources/</code>
+						</div>
+						<div style="left: 5vw; padding: 20px; margin-left:-5.5em;">
+							<img width="100px" style="margin-bottom:-35px; margin-right:1em;" src="Tux-shadow.svg" />
+							<code>cat nw app.nw &gt; foo </code>
+						</div>
+						-->
+						<!--
+						<div style="float: left; padding: 20px;">
+							<img width="100px" style="margin-bottom:-25px; margin-right:1em;" src="Microsoft_Windows_7_logo.svg"/>
+							<code>cat nw app.nw &gt; foo.exe </code>
+						</div>
+						<div style="float: left; padding: 20px;">
+							<img width="140px" style="margin-bottom:-35px;" src="Mac_OS_Logo_without_Text.svg" />
+							<code>cp app.nw nw/Contents/Resources/</code>
+						</div>
+						<div style="float: left; padding: 20px; margin-left:-5.5em;">
+							<img width="100px" style="margin-bottom:-35px;" src="Tux-shadow.svg" />
+							<code>cat nw app.nw &gt; foo </code>
+						</div>
+						-->
+
+						<div style="left: 5vw; padding: 20px; margin-left:-3.2em;">
+							<img width="100px" style="margin-bottom:-25px; margin-left: -2em; margin-right:1em;" src="Microsoft_Windows_7_logo.svg"/>
+							<code>copy /b nw.exe+app.nw &gt; foo.exe </code>
+						</div>
+						<div style="left: 5vw; padding: 20px;">
+							<img width="140px" style="margin-bottom:-35px; margin-left: -5em; margin-right:1em;" src="Mac_OS_Logo_without_Text.svg" />
+							<code>cp app.nw nw/Contents/Resources/</code>
+						</div>
+						<div style="left: 5vw; padding: 20px; margin-left:-5.5em;">
+							<img width="100px" style="margin-bottom:-35px; margin-left: -6.8em; margin-right:1em;" src="Tux-shadow.svg" />
+							<code>cat nw app.nw &gt; foo </code>
+						</div>
+				</section>
+
+				<section>
+					<h3>Debug</h3>
+					<div style="position: relative; left: 0; top: 0;">
+						<img src="default-window.png" style="position: relative; left:0; top: 0;" />
+						<img src="default-window-with-debug-pushed.png" style="position: absolute; left:129px; top: 0;" />
+						<img width="70%" src="cdt-window.png" style="position:absolute; left:20vw; top:10vh; box-shadow: 0 0 30px rgba(20,20,20,0.8); " />
+					</div>
+				</section>
+
+				<section>
+					<h3>Warts</h3>
+					<ul>
+						<li>Windows/Linux require extra files</li>
+						<li>Not v1.0, some stuff still broken</li>
+							<ul><li>child_process</li></ul>
+						<li>Name conflicts</li>
+							<ul><li>crypto</li></ul>
+						<li>Multiple Contexts can be confusing</li>
+						<li>Lack of Keyboard shortcuts</li>
+						<!-- https://github.com/rogerwang/node-webkit/wiki/Transfer-objects-between-window-and-node -->
+					</ul>
+				</section>
+
+<!--
+				<section>
+					<h3>CEF</h3>
+					<h4>Chrome Embedded Framework</h4>
+				</section>
+-->
+				<section>
+					<h3>Other</h3>
+					<ul>
+						<li>CEF - Chromium Embedded Framework</li>
+						<li>Brackets Shell</li>
+						<li>AppJS</li>
+					</ul>
+					<p style="margin-top: 2em;">
+					<a href="http://clintberry.com/2013/html5-apps-desktop-2013/">http://clintberry.com/2013/html5-apps-desktop-2013/</a>
+					</p>
+				</section>
+
+				<section>
+					<h3>Do?</h3>
+				</section>
+
+				<section>
+					<h3>File</h3>
+					<!-- Files, &c. -->
+					<!-- https://github.com/rogerwang/node-webkit/wiki/Changes-to-dom -->
+					<pre><code data-trim contenteditable>
+fs = require('fs');
+
+// Read a file:
+fileText = fs.readFileSync('foo.txt').toString();
+
+// Write a file:
+fs.writeFileSync('bar.txt', fileText);
+
+// Explore a directory:
+fs.readdirSync('.')
+					</code></pre>
+				</section>
+
+				<section>
+					<h3>Choose</h3>
+					<!-- Files, &c. -->
+					<!-- https://github.com/rogerwang/node-webkit/wiki/Changes-to-dom -->
+<script>
+function openBrowsedFile(event) {
+    alert(event.target.value);
+}
+</script>
+<input onchange="openBrowsedFile(event)" id="chooser" type="file" style="display:none"/>
+					<pre><code data-trim contenteditable>
+// Create non-displayed input element
+&lt;input onchange="openBrowsedFile(event)" id="chooser" type="file"
+	style="display:none"/&gt;
+
+. . .
+
+// Dispatch Click Event
+var click = new CustomEvent('click');
+var elem = document.getElementById('chooser');
+elem.dispatchEvent(click);
+
+ . . .
+
+// Event contains chosen file name
+function openBrowsedFile(event) {
+	var filename = event.target.value;
+        . . . 
+}
+					</code></pre>
+				</section>
+
+				<section>
+					<h3>CPU</h3>
+					<!-- <pre><code class=es6 data-trim contenteditable> -->
+					<pre><code data-trim contenteditable>
+os = require('os');
+
+// Number of CPU's
+os.cpus().length
+
+// Total CPU System Time
+_.chain(os.cpus()).pluck('times').pluck('sys').reduce(function(s,t){
+	return s+t;
+}).value();
+
+// Free memory
+os.freemem();
+
+					</code></pre>
+
+				</section>
+
+				<section>
+					<h3>Menu</h3>
+					<pre style="float: left; width: 60%; margin-left:-10px; margin-right:0"><code style=" margin-left:0;width:80%" data-trim contenteditable>
+var gui = require('nw.gui');
+var win = gui.Window.get();
+
+var rootMenu = new gui.Menu({
+	type: 'menubar'});
+var myMenu = new gui.Menu();
+
+myMenu.append(new gui.MenuItem({
+	type: 'normal',
+	label: 'Debug',
+	click: function (){
+		win.showDevTools();
+	} }));
+
+rootMenu.append(new gui.MenuItem({
+	label: 'NW-Reveal',
+	submenu: myMenu
+}));
+
+rootMenu.append(new gui.MenuItem({
+	label: 'NW-Reveal',
+	submenu: myMenu
+}));
+					</code></pre>
+					<img src="menu2.png" width="35%" style="float: right; margin-left:0; margin-right:0;"/>
+				</section>
+
+				<section>
+					<h3>Tray</h3>
+					<!-- https://github.com/rogerwang/node-webkit/wiki/Minimize-to-tray -->
+					<pre style="float: left; width: 60%;"><code style="width:60%" data-trim contenteditable>
+
+var tray = new gui.Tray({
+    icon: 'icon.png'
+  });
+var menu = new gui.Menu();
+menu.append(new gui.MenuItem({
+    type: 'checkbox',
+    label: 'Always-on-top',
+    click: function () {...}
+  }));
+tray.menu = menu;
+					</code></pre>
+					<img src="tray.png" width="40%" style="float: right;"/>
+
+
+				</section>
+
+				<!-- https://github.com/rogerwang/node-webkit/wiki/Frameless-window -->
+				<!--
+				<section>
+					<h3>Frameless</h3>
+				</section>
+				-->
+
+				<section>
+					<h3>Kiosk</h3>
+					<pre><code data-trim contenteditable>
+// In package.json
+"window": {
+    "kiosk": true
+}
+
+// Or
+gui.Window.get().enterKioskMode();
+
+// Later
+gui.Window.get().leaveKioskMode();
+					</code></pre>
+				</section>
+
+				<section>
+					<h3>Shell</h3>
+					<!-- https://github.com/rogerwang/node-webkit/wiki/Shell -->
+					<pre><code data-trim contenteditable>
+// Open Link in browser
+gui.Shell.openExternal('https://intel.com');
+
+// Open a file with default application
+gui.Shell.openItem('foo.ext');
+
+// Open a file in finder/file explorer.
+gui.Shell.showItemInFolder('/path/to/bar');
+					</code></pre>
+				</section>
+
+				<section>
+					<h3>Native</h3>
+					<!-- node-gyp -->
+					<!-- https://github.com/rogerwang/node-webkit/wiki/Handling-files-and-arguments -->
+					<!-- https://github.com/rogerwang/node-webkit/wiki/Third-party-browser-plugins -->
+					<pre><code data-trim contenteditable>
+$ npm install -g nw-gyp
+
+binding.gyp:
+{
+  "targets": [
+    {
+      "target_name": "foo",
+      "sources": [ "foo.cc" ]
+    }
+  ]
+}
+
+$ nw-gyp configure --target=0.7.5  # nw version
+$ nw-gyp build
+					</code></pre>
+				<!-- https://github.com/rogerwang/nw-gyp -->
+				</section>
+
+				<section>
+					<h3>Snapshot</h3>
+					<h5 class=red>(Experimental)</h5>
+					<pre><code data-trim contenteditable>
+$ nwsnapshot --extra_code foo.js foo.bin
+
+
+In package.json:
+
+. . .
+
+	"snapshot": "foo.bin"
+
+. . .
+
+					</code></pre>
+					
+
+					<!-- https://developers.google.com/v8/embed -->
+				</section>
+
+				<section>
+					<h3>Play</h3>
+					<pre><code data-trim contenteditable>
+var gui = require('nw.gui');
+var win = gui.Window.get();
+
+win.hide();
+win.show();
+win.maximize();
+win.minimize();
+
+window.open();
+window.moveBy(10,30);
+window.resizeTo(800,600);
+					</code></pre>
+				</section>
+
+				<section>
+					<h3>Also</h3>
+					<!-- https://github.com/rogerwang/node-webkit/wiki/Save-persistent-data-in-app -->
+					<!-- https://github.com/rogerwang/node-webkit/wiki/Preserve-window-state-between-sessions -->
+					<ul>
+						<li>Persist</li>
+						<li>Frameless</li>
+						<li>Clipboard</li>
+						<li>Icons</li>
+						<li>WebGL</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>New</h3>
+					<img src="xdk.png" width="100%"/>
+				</section>
+
+				<section>
+					<h3>Sum</h3>
+					<ul>
+						<li><strong>Easy</strong></li>
+						<li><strong>Flexible</strong></li>
+						<li><strong>Powerful</strong></li>
+						<li><strong>Leverage</strong></li>
+						<!-- https://github.com/rogerwang/node-webkit/wiki/Transfer-objects-between-window-and-node -->
+					</ul>
+				</section>
+
+				<section>
+					<h3>Legal</h3>
+					<div style="font-size: small; margin-top:7vh; text-align: left; margin-left: 1rem;">
+						<p>
+						This presentation is for informational purposes only. INTEL MAKES NO WARRANTIES, EXPRESS OR IMPLIED, IN THIS SUMMARY.
+						</p>
+						<p>
+						[Intel, the Intel logo, Intel XDK and Intel XDK <em>NEW</em>] are trademarks of Intel Corporation in the U.S. and other countries. 
+						</p>
+						<p>
+						*Other names and brands may be claimed as the property of others.
+						</p>
+						<p>
+						Microsoft, Windows, and the Windows logo are trademarks, or registered trademarks of Microsoft Corporation in the United States and/or other countries.
+						</p>
+						<p>
+						INFORMATION IN THIS DOCUMENT IS PROVIDED IN CONNECTION WITH INTEL® PRODUCTS. NO LICENSE, EXPRESS OR IMPLIED, BY ESTOPPEL OR OTHERWISE, TO ANY INTELLECTUAL PROPERTY RIGHTS IS GRANTED BY THIS DOCUMENT. EXCEPT AS PROVIDED IN INTEL'S TERMS AND CONDITIONS OF SALE FOR SUCH PRODUCTS, INTEL ASSUMES NO LIABILITY WHATSOEVER, AND INTEL DISCLAIMS ANY EXPRESS OR IMPLIED WARRANTY, RELATING TO SALE AND/OR USE OF INTEL PRODUCTS INCLUDING LIABILITY OR WARRANTIES RELATING TO FITNESS FOR A PARTICULAR PURPOSE, MERCHANTABILITY, OR INFRINGEMENT OF ANY PATENT, COPYRIGHT OR OTHER INTELLECTUAL PROPERTY RIGHT. Intel products are not intended for use in medical, life saving, life sustaining, critical control or safety systems, or in nuclear facility applications.Intel may make changes to specifications and product descriptions at any time, without notice. Designers must not rely on the absence or characteristics of any features or instructions marked "reserved" or "undefined." Intel reserves these for future definition and shall have no responsibility whatsoever for conflicts or incompatibilities arising from future changes to them. The information here is subject to change without notice. Do not finalize a design with this information. All products, platforms, dates, and figures specified are preliminary based on current expectations, and are subject to change without notice.
+						Copyright © 2013, Intel Corporation. All rights reserved.
+						</p>
+					</div>
+
+				</section>
+				<section>
+					<img src="icon-node-webkit.png" width="25%"/>
+					<h4><a href="https://github.com/rogerwang/node-webkit ">https://github.com/rogerwang/node-webkit</a></h4>
+					<img src="Intel-logo.svg" width="25%"/>
+				</section>
+
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+
+					</code></pre>
+				</section>
+
+				<section>
+					<h3>Also</h3>
+					<!-- https://github.com/rogerwang/node-webkit/wiki/Save-persistent-data-in-app -->
+					<!-- https://github.com/rogerwang/node-webkit/wiki/Preserve-window-state-between-sessions -->
+					<ul>
+						<li>Persist</li>
+						<li>Frameless</li>
+						<li>Clipboard</li>
+						<li>Icons</li>
+						<li>WebGL</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Sum</h3>
+					<ul>
+						<li><strong>Easy</strong></li>
+						<li><strong>Flexible</strong></li>
+						<li><strong>Powerful</strong></li>
+						<li><strong>Leverage</strong></li>
+						<!-- https://github.com/rogerwang/node-webkit/wiki/Transfer-objects-between-window-and-node -->
+					</ul>
+				</section>
+
+				<section>
+					<img src="icon-node-webkit.png" width="25%"/>
+					<h4><a href="https://github.com/rogerwang/node-webkit ">https://github.com/rogerwang/node-webkit</a></h4>
+					<img src="Intel-logo.svg" width="25%"/>
+				</section>
+
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			//DALE - turn off controls and progress bar
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: false,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'fade', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+					// { src: 'plugin/leap/leap.js', async: true }
+					// { src: 'plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } }
+					// { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
