@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+<meta charset='UTF-8'>
+<head>
+    <script src="js/d3.v3.min.js" charset="utf-8"></script>
+    <script src="js/jquery-2.0.3.min.js" charset="utf-8"></script>
+    <script src="js/underscore-min.js" charset="utf-8"></script>
+    <script src="js/coffee-script.js" charset="utf-8"></script>
+
+    <style>
+        .label {
+            width: 3rem;
+            float: left;
+            text-align: right;
+            margin-right: 1rem;
+        }
+    </style>
+
+    <script type="text/coffeescript">
+        data =
+            2:[41]
+            3:[8,43]
+            4:[13,21,40,45]
+            5:[9,15,19,36,42]
+            6:[1,2,3,10,18,22,27,37,38,44]
+            7:[5,6,12,16,33]
+            8:[11,20,24,26,31]
+            9:[14,32,35,39]
+            10:[4,7,23,25,28,30,34]
+            11:[17,29]
+            12:[]
+
+        # Convert unclean data above to 'clean' form,
+        # according to 'Getting Started with D3'
+        # i.e. no data in keys
+        cleaned = (d)->
+            a = []
+            for k,v of d
+                a.push {'dice':k, 'list': v}
+            a
+
+        $(->
+            d3.select('#go')
+                .append('div')
+                .selectAll('div')
+                .data([2..12])
+                .enter()
+                .append('div')
+                .attr('id',(d)->'roll-'+d)
+                .append('div')
+                .attr('class', 'label')
+                .text((d,i)->d+': ')
+
+            for i in cleaned(data)
+                d3.select('#roll-'+i.dice)
+                    .selectAll('span')
+                    .data(i.list)
+                    .enter()
+                    .append('span')
+                    .text((d)->'*')
+                    .style('opacity', 0)
+                    .transition()
+                    .duration(500)
+                    .delay((d)->d*300)
+                    .style('opacity', 1)
+        )
+        
+    </script>
+
+</head>
+
+<body>
+    <h2>Cataan Dice Rolls:</h2>
+    <h3 id=go></h3>
+</body>
+</html>
+
