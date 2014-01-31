@@ -6,6 +6,7 @@
 </head>
 <body>
 <h3>Chrome problem with SVG:</h3>
+<h5>NOTE: submitted as <a href="http://code.google.com/p/chromium/issues/detail?id=339899">Issue 339899</a></h5>
 
 <p>
 Chrome doesn't seem to properly handle initial whitespace characters in values string of a feColorMatrix element.  What you should see in both cases below is something approximating a solar eclipse, i.e. a dark circle on a dark background with a round white shadow (scroll down to bottom of page to see a working version).  Instead in Chrome, it just seems to choke and give up, showing empty white space:
@@ -31,7 +32,7 @@ Chrome doesn't seem to properly handle initial whitespace characters in values s
 
 <p>
 It is a problem in Safari as well, so I'm guessing there is an underlying Webkit issue.
-The problem seems to result from the initial character of the "values" field being whitespace (either a newline or space will show the problem):
+The problem seems to result from the initial character of the "values" field (in the feColorMatrix element) being whitespace (either a newline or space will show the problem):
 </p>
 
 <h5>Broke:</h5>
