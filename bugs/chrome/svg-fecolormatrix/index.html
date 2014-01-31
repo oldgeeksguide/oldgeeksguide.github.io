@@ -1,0 +1,93 @@
+<!doctype html>
+
+<html>
+<meta charset='UTF-8'>
+<head>
+</head>
+<body>
+<h3>Chrome problem with SVG:</h3>
+
+<p>
+Chrome doesn't seem to properly handle initial whitespace characters in values string of a feColorMatrix element.  What you should see in both cases below is something approximating a solar eclipse, i.e. a dark circle on a dark background with a round white shadow (Scroll down to bottom of page to see a working version).  Instead in Chrome, it just seems to choke and give up, showing empty white space:
+</p>
+
+<svg width=400 height=400>
+  <defs>
+    <filter id="WhiteGlow" filterUnits="userSpaceOnUse" x="-20" y="-20" width="400" height="400" >
+    <feFlood x="0%" y="0%" width="100%" height="100%" flood-color="black" result="background" />
+    <feColorMatrix in="SourceAlpha" type="Matrix" values="
+         0  0  0  1  0
+         0  0  0  1  0
+         0  0  0  1  0
+         0  0  0  1  0" result="whiteshade" />
+    <feGaussianBlur in="whiteshade" stdDeviation="20" result="whiteblur" />
+    <feComposite in="whiteblur" in2="background" operator="over" result="glow" />
+    <feComposite in="SourceGraphic" in2="glow" operator="over" />
+    </filter>
+  </defs>
+
+  <circle cx="200" cy="200" r="120" fill="black" filter="url(#WhiteGlow)" />
+</svg>
+
+<p>
+It is a problem in Safari, so I'm guessing there is an underlying Webkit issue.
+The problem seems to result from the initial character of the "values" field being whitespace (either a newline or space will show the problem):
+</p>
+
+<h5>Broke:</h5>
+<pre>
+    &lt;feColorMatrix in="SourceAlpha" type="Matrix" values="
+         0  0  0  1  0
+         0  0  0  1  0
+         0  0  0  1  0
+         0  0  0  1  0" result="whiteshade" /&gt;
+</pre>
+
+<h5>Broke:</h5>
+<pre>
+    &lt;feColorMatrix in="SourceAlpha" type="Matrix" values=" 0  0  0  1  0
+         0  0  0  1  0
+         0  0  0  1  0
+         0  0  0  1  0" result="whiteshade" /&gt;
+</pre>
+
+<h5>Works:</h5>
+<pre>
+    &lt;feColorMatrix in="SourceAlpha" type="Matrix" values="0  0  0  1  0
+         0  0  0  1  0
+         0  0  0  1  0
+         0  0  0  1  0" result="whiteshade" /&gt;
+</pre>
+
+<p>
+What you should see is something like this:
+</p>
+
+<svg width=400 height=400>
+  <defs>
+    <filter id="WhiteGlow" filterUnits="userSpaceOnUse" x="-20" y="-20" width="400" height="400" >
+    <feFlood x="0%" y="0%" width="100%" height="100%" flood-color="black" result="background" />
+    <feColorMatrix in="SourceAlpha" type="Matrix" values="0  0  0  1  0
+         0  0  0  1  0
+         0  0  0  1  0
+         0  0  0  1  0" result="whiteshade" />
+    <feGaussianBlur in="whiteshade" stdDeviation="20" result="whiteblur" />
+    <feComposite in="whiteblur" in2="background" operator="over" result="glow" />
+    <feComposite in="SourceGraphic" in2="glow" operator="over" />
+    </filter>
+  </defs>
+
+  <circle cx="200" cy="200" r="120" fill="black" filter="url(#WhiteGlow)" />
+</svg>
+
+<p>
+All the examples work in Firefox.  Another difference is that the shadow appears different (basically it's larger) in Firefox, not sure if that detail is well defined or is a bug in one or the other.
+</p>
+
+<p>
+Above example is drawn from an
+SVG filter example for <a href="http://software.intel.com/en-us/blogs/2013/09/12/svg-filters-putting-pieces-together">blog post</a> by <a href="https://twitter.com/oldgeeksguide">@OldGeeksGuide</a>
+</p>
+</body>
+</html>
+
