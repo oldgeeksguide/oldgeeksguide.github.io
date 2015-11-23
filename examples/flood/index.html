@@ -1,0 +1,207 @@
+<!doctype html>
+
+<html>
+
+<meta name="Copyright" content="&copy; 2015, Intel Corporation. All rights reserved." />
+<!--
+* Copyright (c) 2015, Intel Corporation. All rights reserved.
+* Please see http://software.intel.com/html5/license/samples 
+* and the included README.md file for license terms and conditions.
+-->
+
+<head>
+<style>
+
+head, body {
+    width: 100%;
+    height: 100%;
+}
+
+.slowchange {
+    transition: all 0.4s ease-in-out;
+    -webkit-transition: all 0.4s ease-in-out;
+    -moz-transition: all 0.4s ease-in-out;
+    -ms-transition: all 0.4s ease-in-out;
+}
+
+#field {
+    border-style: none;
+    border-spacing: 0px;
+    width: 80%;
+    margin: auto;
+}
+
+.cell {
+    min-width: 7.1%; /* 14 tiles so this is 1/14 (*100 for percentage) */
+    width: 7.1%;
+    padding-bottom: 7.1%;
+    border-style: none;
+    border-spacing: 0px;
+    background: gray;
+}
+
+.button {
+    margin-left: 1em;
+    padding-left: 1em;
+    padding-right: 1em;
+    border: 1px solid black;
+}
+
+#counter {
+    margin-left: 1em;
+    padding-left: 0.25em;
+    padding-right: 0.25em;
+}
+
+</style>
+
+<script>
+var colors = ["red", "blue", "green", "yellow", "darkred", "violet"];
+var background = '';
+var tiles = [];
+var doneList = [];
+
+function addNeighbor(k) {
+    if (k.checked) {
+        return;
+    }
+    k.done = true;
+    if (doneList.indexOf(k) < 0) {
+        doneList.push(k)
+    }
+}
+
+function checkColor(k)
+{
+    if (k.done || k.dom.color == background) {
+        k.done = true;
+        k.dom.color = 'transparent';
+        k.dom.style.backgroundColor = 'transparent';
+        addNeighbor(k);
+    }
+}
+
+function addNeighbors(t)
+{
+    if (t.x > 0) {
+        checkColor(tiles[t.x-1][t.y]);
+    }
+    if (t.x < tiles.length-1) {
+        checkColor(tiles[t.x+1][t.y]);
+    }
+    if (t.y > 0) {
+        checkColor(tiles[t.x][t.y-1]);
+    }
+    if (t.y < tiles[t.x].length-1) {
+        checkColor(tiles[t.x][t.y+1]);
+    }
+    t.checked = true;
+}
+
+
+function doColor(color)
+{
+    var f = document.getElementById('field');
+    background = color;
+    doneList=[];
+    for (i=0; i<tiles.length; i++) {
+        for (j=0; j<tiles[i].length; j++) {
+            tiles[i][j].checked = false;
+            if (tiles[i][j].done) {
+                doneList.push(tiles[i][j]);
+            }
+        }
+    }
+
+    f.style.backgroundColor = color;
+    f.color = color;
+    while (doneList.length > 0) {
+        var t = doneList.pop();
+        addNeighbors(t);
+    }
+}
+
+
+function colorCells(tiles)
+{
+    for (i=0; i<tiles.length; i++) {
+        drow = tiles[i];
+        for (j=0; j<drow.length; j++) {
+            var c = colors[parseInt(Math.random()*colors.length)];
+            drow[j].dom.style.backgroundColor = c;
+            drow[j].dom.color = c;
+            drow[j].done = false;
+        }
+    }
+    var f = document.getElementById('field');
+    background = tiles[0][0].dom.color;
+    f.style.backgroundColor = background;
+    tiles[0][0].done = true;
+    tiles[0][0].dom.style.backgroundColor = 'transparent';
+    tiles[0][0].dom.color = 'transparent';
+    doColor(background);
+}
+
+function resetCounter()
+{
+    var counter = document.getElementById('counter');
+    counter.innerHTML = "0";
+}
+
+function incCounter()
+{
+    var counter = document.getElementById('counter');
+    var cur = parseInt(counter.innerHTML);
+    counter.innerHTML = String(cur+1);
+}
+
+function clickCell()
+{
+    if (this.color != background && this.color != 'transparent') {
+        incCounter();
+        doColor(this.color);
+    }
+}
+
+function makeCells(x, y)
+{
+    var f = document.getElementById('field');
+    tiles = [];
+    for (i=0; i<x; i++) {
+        var row = document.createElement('tr');
+        var drow = [];
+        for (j=0; j<x; j++) {
+            var square = document.createElement('td');
+            square.setAttribute('class', 'cell slowchange');
+            square.onclick = clickCell;
+            row.appendChild(square);
+            drow[j] = { "dom": square, "color": '', "x": i, "y": j};
+        }
+        tiles[i] = drow;
+        f.appendChild(row);
+    }
+    colorCells(tiles);
+}
+
+function clickColor()
+{
+    doColor(this.style.backgroundColor);
+}
+
+function resetGame()
+{
+    colorCells(tiles);
+    resetCounter();
+}
+
+</script>
+</head>
+<body onload="makeCells(14, 14)">
+<table id=field class="slowchange">
+</table>
+
+<h1><span id=counter>0</span><span class=button onclick="resetGame()">New Game</span></h1>
+
+</body>
+</html>
+
