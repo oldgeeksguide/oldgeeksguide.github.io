@@ -13,7 +13,7 @@
 
     .node circle {
       fill: #fff;
-      stroke: steelblue;
+      stroke: red;
       stroke-width: 3px;
     }
 
@@ -87,6 +87,7 @@ var i = 0,
     duration = 750,
     root;
 
+
 var tree = d3.layout.tree()
     .size([height, width]);
 
@@ -128,7 +129,7 @@ function update(source) {
 
   nodeEnter.append("circle")
       .attr("r", 1e-6)
-      .style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; });
+      .style("fill", function(d) { return d._children ? "white" : "lightgray"; });
 
   nodeEnter.append("text")  // adjust parameters on next couple lines
       .attr("x", function(d) { return d.children || d._children ? -5 : 14; })
@@ -144,7 +145,7 @@ function update(source) {
 
   nodeUpdate.select("circle")
       .attr("r", 15)
-      .style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; });
+      .style("fill", function(d) { return d._children ? "white" : "lightgray"; });
 
   nodeUpdate.select("text")
       .style("fill-opacity", 1);
