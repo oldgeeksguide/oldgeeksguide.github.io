@@ -1,0 +1,70 @@
+
+<html>
+  <!-- <link rel="stylesheet" href="jade.css"/> -->
+  <body>
+    <h1>Cordova Plugins and the Dolby API</h1>
+    <p>
+      Every once in a while, someone comes up with an idea that's so good, it catches on to the point that it becomes ubiquitous in it's domain.  The web browser is one example.
+      <a href='https://software.intel.com/en-us/blogs/2013/07/19/jquery-the-birth-of-cool-javascript'>jQuery</a>
+      is another.
+      Thanks to those good ideas, Javascript, HTML and CSS have become so widely used that Javascript has been called the
+       <a href='http://www.hanselman.com/blog/JavaScriptIsAssemblyLanguageForTheWebSematicMarkupIsDeadCleanVsMachinecodedHTML.aspx'>"Assembly language of the web"</a>.
+      It's not the first attempt at a universal programming environment, but it's reach is perhaps unprecedented.
+    </p>
+
+    <p>
+      Now, the fact that this technology was born in the web browser has some interesting implications.  The World Wide Web is not a completely safe place, and browsers have responded by cordoning off the contents of the web  from the rest of the computer, in an attempt to limit the potential danger that comes from poking around the 'Wild Wild Web'.  This is a good thing, but it can make a programmers life difficult.
+      For example, In most programming languages, it's easy to do things like read and write files, make system calls or even access hardware features.  No one would want some random webpage to have that kind of access.
+    </p>
+
+    <p>
+      In the meantime, there has been a strong trend towards mobile devices.  Many things people used to rely on desktop and laptop machines to do are now done on phones and tablets.  For a variety of reasons, these devices have come to be very app-centric: everyone interacts with their devices through a collection of apps, usually downloaded from a more or less trusted source.
+    </p>
+
+    <p>
+      What's interesting is the convergence of technologies in the form of HTML based web apps.  Give the universality of HTML5/Javascript, it's convenient to produce apps with that technology, but they are limited in the way that web pages are limited, with minimal access to device hardware and features.  Enter Cordova.
+    </p>
+
+    <p>
+      Formerly known as '<a href="http://en.wikipedia.org/wiki/PhoneGap">Phonegap</a>', Apache Cordova provides an API and way to build HTML apps to produce installable mobile apps. The key is that the Cordova API provides access to features that
+      are not normally available to an HTML5 app, whether it's device hardware like the camera and GPS, or system resources such as the file system or the contacts database.  Standard Cordova came with a significant library of such API's, but
+      as it has grown, the Cordova framework has developed from an all-in-one solution to a plugin approach.
+      I'm not always a big fan of "plugin" architecture.  There's always a trade-off
+      between an all-in-one approach, with batteries included, and a bare-bones only what you need approach.  The former is easier when you're starting out and don't need to think about a bunch of details that you don't care about, but the latter
+      can be more efficient and flexible, once you're know what you're doing.
+    </p>
+
+    <p>
+      In fact, projects tend to follow that pattern as well.  First they start out, with everything built in, then at some point they start adding so many features they realize it's a good idea to allow plugins or modules of some sort, then they realize a lot of the things that were built-in could be done as plugins,
+      et voila, a plugin architecture is born.
+      Thus I initially greeted Cordova plugins with some skepticism, figuring
+      it's just following the natural course of a software project, but now I think
+      I was really missing it's significance.
+    </p>
+
+    <p>
+      The really cool part about a Cordova plugin isn't about the architecture of the Cordova project.
+      The cool part is that it makes it really easy to add functionality to web apps
+      that would normally be restricted to native apps.
+      A great example I ran across recently is the <a href='https://github.com/DolbyDev/Dolby-Audio-Plugin-for-Cordova'>Dolby API plugin</a>.
+    </p>
+
+    <p>
+      Now if you're lucky enough to have a mobile device with support for Dolby audio, you can take advantage of this in your mobile app.  The audio processing technology can enhance on-device audio, offering a choice of audio profiles optimized for gaming, music, movie watching or speech.
+      This allows a mobile app to enable and control the use of dolby audio processing builtin to some devices, if present.
+      The API uses a familiar callback based approach to enable and configure the audio processing features.
+    </p>
+
+    <p>
+      If you're using the <a href='https://software.intel.com/en-us/html5/tools'>Intel XDK</a> to build a web app, it's really easy to add this plugin to your app and then use the API in your code.  On the project page, under plugins and permissions, there's a sub-menu called "Third-Party Plugins".  Choose "Get Plugin from the Web" and point it at the git repo, "<code>https://github.com/DolbyDev/Dolby-Audio-Plugin-for-Cordova.git</code>", with a name of your choosing and the plugin id "<code>com.dolby.dax</code>".
+      In your app, you'll need a line like this to initiate dolby processing:
+    </p>
+      <code style="background:lightgrey; padding: 1rem; width: 100%; margin: auto; border:10px">
+      dolby.dap.initialize(dolby.DapProfile.GAME, onDsConnected, onFail);
+      </code>
+    <p>
+      where <code>onDsConnected()</code> is run if/when the dolby feature is enabled, otherwise <code>onFail()</code> is run.
+      In place of "<code>GAME</code>" you can choose "<code>MOVIE</code>", "<code>VOICE</code>", "<code>MUSIC</code>" to get audio optimized for different situations.  If you want to try it out, I have a sample app you can import to the Intel XDK on github at <a href="https://github.com/oldgeeksguide/dolby-cordova-plugin-example">https://github.com/oldgeeksguide/dolby-cordova-plugin-example</a>.
+    </p>
+  </body>
+</html>

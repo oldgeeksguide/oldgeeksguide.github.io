@@ -1,0 +1,90 @@
+<p>".... . .- -.. .. -. --. / .... --- -- ."</p>
+
+<h3>heading-home-with-the-intel-xdk</h3>
+
+<p>
+For a long time, I never understood the popularity of texting.  While a phone call is a quick way to verbally connect, and email is for textual information but with no guarantee of when you'll get a response, texting
+seems to combine the worst of both worlds - a lousy keyboard and no idea when you'ell hear back.
+</p>
+
+<p>
+I eventually had to give in and try it, if for no other reason than to effectively communicate with my teenager.
+I have to admit, I quickly discovered it does have a place.  It's a way to send quick communications that don't need
+an immediate response, or any response sometimes.  It's often easier in certain social situations to fire off
+a text than it would be to open up a laptop, or excuse oneself to go make a call.  Unlike my teenager, however, I can't seem to text and walk.
+(I'm sure it would be a violation of workplace safety standards, at least that's the excuse I'm going with.)
+</p>
+
+<p>
+Nevertheless, I do like to let my wife know when I'm heading home, which tends to slow the process of actually heading home, as it takes me a while to compose and type a missive such as:
+</p>
+
+<pre><code>"My dearest wife, like the Monarch Butterfly and the Blue Whale, I'm about to embark on
+an odyssey that I hope will bring me home in short order (barring traffic, hurricanes and
+whaling vessels).
+</code></pre>
+
+<p>
+As you can imagine, it takes me a while to get going.
+</p>
+
+<p>
+Now, while I may be too old to learn to thumb-type like a teenager, I do have one advantage.  I know
+how to create mobile apps.  In fact, with the <a href="http://xdk-software.intel.com/">Intel XDK</a>, a lot of simple tasks can be done really easily,
+so I could create a simple texting app that does just what I need.
+</p>
+
+<p>
+In fact, it's so easy, all I really need is one line of code:
+</p>
+
+<pre><code>intel.xdk.device.sendSMS('Clever message that could only come from me', '5555551234');
+</code></pre>
+
+<p>
+This one line of code will send an SMS message, using your default messaging app.  In particular,
+it will drop you into your messaging app with the text and phone number already filled in, and all you need
+do is hit the send button.
+</p>
+
+<p>
+Of course, the other important thing to know is exactly where to put this one line of code such
+that it correctly serves its purpose.  Well it turns out there are two useful possibilities.
+</p>
+
+<p>
+When you create a new project in the Intel XDK, there are a number of choices, but for our purpose we
+can choose "Start with a Blank Project".  The structure of the blank project that you start with has changed
+a bit with the latest release.  While it used to be that all the code was in the index.html, it's been
+recently rearranged for improved reliability and to be more consistent with best practices.
+</p>
+
+<p>
+Now when you open a blank project, there are several javascript files provided.  There is also a generic header button labeled "Touch Me" in the index.html.
+</p>
+
+<p>
+Now if all you want to do is use the provided button, you'll need to modify <code>www/js/app.js</code>, in the function <code>myEventHandler</code>.  Simply replace the contents of that function with the line of code above, but be sure
+to use the phone number you're interested in messaging and you may want to change the text of the message.
+</p>
+
+<p>
+So, if you've done that, you should be able to start the app, hit the button, and then hit a few more things in response to various dialogs and then hit send in your messaging app and you're done.  OK, it can still
+involve a number of button pushes, but at least there's no typing or finding of contacts involved.
+On my phone, I have to start the app (1) push the button (2) then the phone asks me which app I want to use (3) Just once or Always? (4) and finally send (5).
+</p>
+
+<p>
+Of course, we can get that down a bit.  If I can get myself to commit to a particular messaging app, we should be down to 3 taps, but we can go one better.  Since the sole purpose of this app is to send a single message to a single number, I don't really need the button push at all, I can just immediately send a message when the app starts up.
+Now, you may not want to do this, in case you occasionally start apps by mistake, butyou should be able to avoid actually sending the app in that case, as you still need to hit send in the messaging app.  If you do decide to send the missive on startup, you'll need to change where you add the one line of code above.
+</p>
+
+<p>
+To modify the startup behavior of the app, find the file <code>www/js/init-app.js</code> and add the line above to the beginning of the function <code>app.initEvents</code>, and now it should immediately go to sending the message
+when you start the app.
+</p>
+
+<p>
+I've already gone on too long here, but you can of course make your app prettier, give it a custom
+icon, and so on, but if you just want to try an incredibly simple, yet potentially useful app, give it a try.
+</p>

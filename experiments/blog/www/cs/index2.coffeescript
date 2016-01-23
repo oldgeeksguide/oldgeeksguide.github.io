@@ -1,0 +1,104 @@
+"use strict";
+
+resetBlog = ->
+    Articles = null     # Parsed JSON object with list of blog entries
+
+    # private functions
+    replaceArticle = (article, text)->
+        title = ""
+        ArticleBox.innerHTML = text
+        window.location.hash = article.hash  # don't forget hash starts with #
+
+        if typeof article.title is 'string'
+            title = article.title
+        document.getElementById('current-title').innerHTML = title
+
+    getTextFile = (url, success)->
+        xhttp = new XMLHttpRequest()
+
+        xhttp.onreadystatechange = ->
+            if xhttp.readyState is 4 and xhttp.status is 200
+                success xhttp.responseText
+
+        xhttp.open("GET", url, true)
+        xhttp.send()
+
+    loadArticle = (article)->
+        getTextFile article.url, (t)->
+            replaceArticle(article, t)
+
+    fillNav = ->
+        list = document.createElement('ul')
+        for v in Articles
+            el = document.createElement('li')
+            el.innerHTML = v.title
+            el.onclick = -> go(v)
+            window.location.hash = v.hash
+            list.appendChild(el)
+        NavBox.appendChild(list)
+
+    loadAndGo = (jsonFN)->
+        getTextFile jsonFN, (t)->
+            Articles = JSON.parse t
+            fillNav()
+            go Articles[0]
+
+
+    go = (article)->
+        #loadArticle("blog-entries/"+article, g.current, title)
+        loadArticle article
+        
+        # window.scroll(0,0);
+        ContentBox.scrollTop = 0;
+
+    hideHeader = ->
+        # could also hide by changing opacity
+        Header.classList.add 'shields-up'
+
+    showHeader = ->
+        Header.classList.remove 'shields-up'
+
+    fadeContent = ->
+        ContentBox.className = "faded"
+
+    unfadeContent = ->
+        ContentBox.className="unfaded"
+
+    closeNav = ->
+        NavBox.className="closed"
+
+    openNav = ->
+        NavBox.className="open"
+
+    everySecond = ->
+        if ContentBox.scrollTop < 5
+            showHeader()
+            ContentBox.addEventListener('scroll', onScroll, false)
+        else
+            setTimeout(everySecond, 1000)
+
+    onScroll = ->
+        if ContentBox.scrollTop > 10
+            hideHeader()
+            ContentBox.removeEventListener('scroll', onScroll, false)
+            everySecond()
+
+    # INIT code, 'module' var decs
+    NavBox = document.getElementsByTagName('nav')[0]
+
+    ContentBox = document.getElementById 'content'
+    ArticleBox = document.getElementById 'current'
+    Header = document.querySelector 'header'
+
+    loadAndGo('json/blog-entries.json', NavBox)
+
+    delayedActions = ->
+        unfadeContent();
+        closeNav();
+
+    setTimeout(delayedActions, 400)
+    ContentBox.onscroll = onScroll
+
+
+document.addEventListener("DOMContentLoaded", resetBlog)
+#window.onload = resetBlog;

@@ -1,0 +1,89 @@
+
+<p>
+When I think of Dolby technology, I usually think of Movie theaters and high end stereos, adding life to soundtracks
+and music.  It turns out that they've also been working on bringing some of that clever technology to hand-held devices.
+This technology is designed to enhance different sorts of audio, including games, movies and music.
+This is cool if you own one of these devices and can experience better audio, but it's also interesting to developers.
+</p>
+
+<p>
+As an app developer, you want to be able to take advantage of this technology to maximum effect.  If you're designing
+a game, you want to enhance it by ensuring that the Dolby game profile is active.  If you're playing music or video,
+you'll want the appropriate profile active. <br />
+Fortunately the Dolby Cordova Plugin makes that easy.
+</p>
+
+<p>
+If all you want to do is enable Dolby functionality, that's easy.  The API relies on a <a href="https://software.intel.com/en-us/blogs/2014/09/05/cordova-plugins-and-the-dolby-api">Cordova Plugin</a> which is available as a featured plugin in the Intel XDK.
+To access it, just go to the projects page, expand the "Plugins And Permissions" pane and check "Dolby Audio API".
+This will cause the plugin to be loaded in your app, exposed as a global variable <code>dolby</code>.  For example,
+if you want to enable the feature for your game, you just need add this code to your initialization code:
+</p>
+
+<pre class="prettyprint"><code>var onDsConnected = function() {
+    console.log("Dolby started successfully");
+};
+var onFail = function(err) {
+    console.log("Dolby failed due to ", err);
+};
+dolby.dap.initialize(dolby.DapProfile.GAME, onDsConnected, onFail);
+</code></pre>
+
+<p>
+Now, if all you care about is enabling it, this will be fine.  But you probably want something more
+sophisticated, say if you want to switch to the music profile for interstitial music while loading a new level:
+</p>
+
+<pre class="prettyprint"><code>dolby.setProfile(dolby.DapProfile.Music);
+</code></pre>
+
+<p>
+The dolby API consists of three parts:
+</p>
+
+<ul>
+<li>dolby.dap - contains the various functions like initialize and setProfile</li>
+<li>dolby.DapProfile - contains the available profiles (<code>GAME</code>, <code>MUSIC</code>, 'VOICE<code>and</code>MUSIC`)</li>
+<li>dolby.DapError - various error codes, provided as parameters to onFail callbacks</li>
+</ul>
+
+<p>
+Aside from initializing and setting profiles, there are a few other convenient capabilities.
+Suppose you've got things set up for your App, with the profile set for your wicked action packed game, but then
+the user gets a phone call.  The user is, no doubt, saavy about these things and has his phone set to use the <code>VOICE</code>
+profile, the better to hear his phone conversations.  You don't want to mess with that, so when the game is interrupted,
+you want to defer to whatever the system setting is, and then go back to the <code>GAME</code> profile when it resumes.  The Dolby
+API allows for that with the <code>suspendSession()</code> and <code>restartSession()</code> functions:
+</p>
+
+<pre class="prettyprint"><code>onPause = function () {
+    dolby.dap.suspendSession();
+}
+document.addEventListener("pause", onPause, false);
+
+
+onResume = function () {
+    var success = function () {
+        console.log("Resuming OK");
+    }
+    var err = function () {
+        console.log("Problem resuming");
+    }
+
+    dolby.dap.restartSession(success, err);
+}
+document.addEventListener("resume", onResume, false);
+</code></pre>
+
+<p>
+There are a couple other functions, like <code>getSelectedProfile()</code> to check the current setting, and <code>release()</code> to
+release control and go back to the system settings.  All the details can be found in the documentation available
+at the github site - <a href="https://github.com/DolbyDev/Dolby-Audio-Plugin-for-Cordova">https://github.com/DolbyDev/Dolby-Audio-Plugin-for-Cordova</a> or at Dolby's developer site - <a href="http://developer.dolby.com">http://developer.dolby.com</a>.
+</p>
+
+<p>
+And if you get a chance to try a device with this capability, check it out.  It makes the builtin speakers sound better, and works great with headphones!
+</p>
+
+
+

@@ -1,0 +1,65 @@
+<p>
+I'm old enough to know from experience that there's nothing new under the sun.
+I remember when mice and GUI's were the latest way to interact with a computer (though it turned out some folks had been <a href="https://en.wikipedia.org/wiki/The_Mother_of_All_Demos">doing that since the 60's</a>).
+Then it was touch screens (though in truth,
+I was using them on <a href="http://en.wikipedia.org/wiki/PLATO_%28computer_system%29">PLATO</a> in the early 80's).
+Maybe soon we'll all be wearing visors and waving our hands around in mid air, But for me
+there's nothing like the command line.
+</p>
+
+<p>
+There was a time when the only way to program a computer was by shuffling wires around, but that predates even me.
+When I started, the way to tell a computer what to do was by typing commands on a keyboard.
+I'm not just talking about programming, but almost any significant task required typing well-defined commands at a computer prompt, from moving files around to starting programs, to powering down (yes, there was a time when we powered down devices, like all the way).
+</p>
+
+<p>
+That's not to say that the command line is primitive.  There has been a fair amount of innovation over the years, making the command line both more powerful and easier to use.  With features like command completion, history,
+and easy scripting, I spend a lot of time in the shell.
+Of course, these days, I'm all about JavaScript, so I'm exceedingly grateful for <a href="http://nodejs.org/">node.js</a>.
+</p>
+
+<p>
+Originally designed
+for server-side scripting, node.js works just as well for anything you might want to do in the shell.
+The really cool thing, though, is the ecosystem that has sprung up around it, enabled by npm (Node Packaged Modules) a plethora of modules that are easily included in whatever program you're writing.
+From <code>grunt</code>, to <code>express</code>, to <code>coffee-script</code>, there are hundreds of tools that can be installed easily with npm.
+</p>
+
+<p>
+The most important thing to understand when you start programming node.js is its asynchronous model.  Things aren't
+exactly done in parallel, but different tasks may be done in no particular order.  This is actually much like
+the way JavaScript works in the browsers, with bits of code responding to events with no guarantees about which comes first.  As in the browser, a lot of things get done in callbacks of one sort or another.
+</p>
+
+<p>
+While it's convenient that the programming model resembles the browser, the main reason it was
+designed that way was for performance reasons.  You don't want to be waiting, for example, on a file read or
+network operation.  Thus if you want to read a file named <code>foo</code> using the builtin <code>fs</code> module in node.js, you 
+call <code>readFile</code> providing the filename, some options and a callback function to be invoked when the data is ready:
+</p>
+
+<pre><code>var fs = require('fs');  // This is node's way of importing a module
+
+fs.readFile('foo', {encoding: 'utf8'}, function(err, data) {
+    if (err) {
+      throw err;
+    }
+    return console.log(data);
+});
+</code></pre>
+
+<p>
+The net effect is an interesting mix of what you're used to in the browser and things that you'd never
+find in that environment.  For example, <code>setTimeout</code> and <code>setInterval' are there, but now you can combine them with</code>os.loadavg` to get a regular update on your system load:
+</p>
+
+<pre><code>var id  = setInterval(function() {console.log(os.loadavg()[0]);}, 2000);
+</code></pre>
+
+<p>
+Given expertise with JavaScript, the capabilities of node.js and the huge number of libraries already available
+via npm, there's almost no limit to what you can do on the command line with JavaScript.  In fact, I bet it would
+be really easy to create grep.js....
+</p>
+
