@@ -1,11 +1,9 @@
 /* Default style for ogg blog */
 
 article {
-    /* border: 3px solid red; */
     padding-top: 2rem;
     padding-bottom: 2rem;
     border: none;
-    /* background: lightgreen; */
     background: white;
     line-height: 1.61;
     font-size: 140%;
@@ -39,11 +37,16 @@ h1 {
 }
 
 header.shields-up {
-    margin-top: -2rem;
+    margin-top: -2.2rem;
     transition: all .5s ease-in-out;
 }
 
+header.shields-up h1 {
+    color: transparent;
+}
+
 header h1 {
+    color: inherit;
     margin-bottom: 5px;
     transition: all .5s ease-in-out;
 }
@@ -102,37 +105,65 @@ nav {
     left: 0;
     overflow-y: scroll;
     overflow-x: scroll; /* or hidden */;
-    transition: all .75s ease-in-out 0.5s;
+    transition: all .75s ease-in-out 0.2s;
     background: rgba(230,238,256, .9); */ /* aliceblue, #f0f8ff  */
     padding-right: 20px;
     display: inline-block;
     /* opacity: .95; */
     margin-top: 7rem;
-    width: 220px;
+    width: 14rem;
     max-height: 8rem;
-    white-space: nowrap;
+    /* white-space: nowrap; */
     margin-left: 0px;
     z-index: 1000;
 }
 
-nav:hover.closed, nav.open {
-    transition: all .75s ease-in-out 0.4s;
+
+/* nav:hover.closed, */
+nav.open {
+    transition: all .75s ease-in-out 0.2s;
     max-height: 8rem;
     margin-left: 0px;
     color: black;
 }
 
 nav.closed {
-    margin-left: -200px;
+    margin-left: -12.5rem;
     color: transparent;
     max-height: 5rem;
 }
 
 
-ol {
+nav ol, nav ul {
     margin-top: 0px;
     line-height: 1.61;
     opacity: inherit;
+    max-width: 11rem;
+    float: left;
+    display: inline-block;
+    overflow-x: scroll;
+    margin-left: -1rem;
+}
+
+ol:after, ul:after {
+    z-index: 1000;
+    position: absolute;
+    display: inline-block;
+    top: 0;
+    right: 0;
+    min-height: 100%;
+    min-width: 1rem;
+    /* background: aliceblue; */
+    /* border: 5px solid green; */
+    background: aliceblue;
+    content: ">";
+    color: black;
+    float: left;;
+    padding-left: 0.5rem;
+}
+
+nav.open ol:after, nav.open ul:after {
+    content: "<";
 }
 
 h1 {
@@ -149,8 +180,6 @@ body {
 }
 
 #content {
-    /* flex-grow: 1; */
-    /* border: 3px solid green; */
     border: none;
     margin-top: 0px;
     padding-left: 150px;
@@ -158,7 +187,6 @@ body {
     margin-right: 0px;
     min-width: 400px;
     transition: all .75s ease-in-out 0.4s;
-    /* background: yellow; */
     background: white;
     overflow-y: auto;
 }
@@ -173,13 +201,8 @@ body {
     opacity: 1;
 }
 
-
-iframe {
+article code {
+    display: inline-block;  /* so you can set width */
+    overflow-x: scroll;
     width: 100%;
-    height: 100vh;
-    /* border: solid red 1px; */
-    border: none;
-
 }
-
-</style>

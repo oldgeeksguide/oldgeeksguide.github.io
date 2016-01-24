@@ -72,11 +72,17 @@ function resetBlog () {
         Articles.forEach(function(v) {
             var el = document.createElement('li');
             el.innerHTML = v.title;
-            el.onclick = function () {go(v);};
+            el.onclick = function (e) {
+                go(v);
+                e.stopPropagation();
+                e.preventDefault();
+                return false;
+            };
             window.location.hash = v.hash;
             list.appendChild(el);
         });
         //NavBox.replaceChild(list, document.getElementById("nav-list"));
+        list.onclick = toggleNav;
         NavBox.appendChild(list)
     }
 
@@ -111,6 +117,14 @@ function resetBlog () {
 
     function openNav() {
         NavBox.className="open";
+    }
+
+    function toggleNav() {
+        if (NavBox.className === 'open') {
+            closeNav();
+        } else {
+            openNav();
+        }
     }
 
     function everySecond() {
