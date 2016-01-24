@@ -138,7 +138,7 @@ function resetBlog () {
 
     function onScroll() {
         if (ContentBox.scrollTop > 10) {
-            window.scrollTo(0,1);
+            window.scrollTo(0,10);
             hideHeader();
             ContentBox.removeEventListener('scroll', onScroll, false);
             everySecond();
