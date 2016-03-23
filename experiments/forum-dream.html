@@ -1,0 +1,148 @@
+
+<!doctype html>
+
+<html>
+<meta charset='UTF-8'>
+
+  <head>
+    <style>
+        html, body {
+            font-family: sans-serif;
+        }
+
+        body {
+            margin: 0 5em 0 5em;
+        }
+        h2, h3 {
+            padding-left: 2em;
+        }
+        #announcements, #stickies {
+            max-height: 4em;
+            overflow: hidden;
+            transition: all .5s;
+            -webkit-transition: all .3s ease-in-out;
+        }
+        #announcements:hover, #stickies:hover {
+            max-height: 100vh;;
+            overflow: scroll;
+            transition: all .5s;
+            -webkit-transition: all .3s ease-in-out;
+        }
+        #userposts {
+            background: lightgrey;
+            border-top: solid 2em rgb(100,100,255);;
+            margin-top: 1em;
+        }
+        #userposts > h3:first-child {
+            margin-top: -1.5em;
+            color: white;
+        }
+        #stickies {
+            background: lightyellow;
+            border-top: solid 2px black;
+            margin-top: 1em;
+        }
+        #stickies > h3:first-child {
+            margin-top: .3em;
+        }
+        /****
+        #stickies {
+            overflow: scroll;
+            background: lightgreen;
+            border-top: solid 2em rgb(100,100,255);;
+            margin-top: 1em;
+        }
+        #stickies > h3:first-child {
+            margin-top: -1.5em;
+            color: white;
+        }
+        ****/
+        #announcements {
+            background: aliceblue;
+            border: 1px solid black;
+        }
+    </style>
+    <script>
+    </script>
+  </head>
+  <body>
+
+    <h1>Intel<sup>&reg;</sup> XDK</h1>
+    <div id=announcements>
+        <h3>Getting the most from this forum</h3>
+            <p>This is the place to ask questions of and share information with other users of the <a href="http://xdk-software.intel.com/">Intel® XDK</a>.  Use the Intel® XDK to develop HTML5 apps.</p>
+
+            <p>Check out our <a href="/en-us/xdk/faqs/">Frequently Asked Questions (FAQ)</a> for some of the answers.</p>
+
+            <p>Please do not include private information such as your email address in your posts. If you need to share private information with an Intel employee, they can start a private thread with you.</p>
+
+            <p>The Intel XDK Support team is best able to support Monday through Friday: 8:00 – 17:00 (Pacific Time).</p>
+
+            <p>To get the best support possible, please include the following information with your post:</p>
+            <ul>
+                <li>Intel XDK version (upper right corner of the Intel XDK).</li>
+                <li>Clear explanation of your issue.</li>
+                <li>How to reproduce your problem.</li>
+                <li>Platform you are building for, build log, build settings, etc.</li>
+                <li>Screenshots, when applicable.</li>
+            </ul>
+
+            <p>Help Us Help You:</p>
+            <ul>
+                <li>Attach build logs to your post instead of pasting them directly into the post.</li>
+                <li>If you are adding to a thread, please stick to the subject of the thread; otherwise, start a new one.</li>
+                <li>Post messages publicly whenever possible.</li>
+            </ul><div class="container-inline">
+             <input title="Search forum..." placeholder="Search forum..." class="form-text" type="text" id="edit-search-keyword" name="search_keyword" value="" size="15" maxlength="128" />
+            <input class="btn form-submit btn dropdown-toggle" type="submit" id="edit-submit" name="op" value="Search" /></div><input type="hidden" name="form_build_id" value="form-09GAhKAf-EFOQeHRB9gY2Rb9t0ZUrv_h5vAwAWhX0VE" />
+
+            <div id="idz-forum-msg">Intel monitors this forum Monday – Friday, 09:00  – 17:00 Pacific Time (GMT –7:00). Depending on the amount of research we need to do to track down the answer, it may take a day or two for us to respond.</div>  <div class="forum-links">
+        </div>
+    </div>
+
+    <div id=stickies>
+        <h3>Stickies</h3>
+        <ol>
+            <li>This one</li>
+            <li>that one</li>
+            <li>This one</li>
+            <li>that one</li>
+            <li>This one</li>
+            <li>that one</li>
+            <li>This one</li>
+            <li>that one</li>
+            <li>This one</li>
+            <li>that one</li>
+            <li>This one</li>
+            <li>that one</li>
+            <li>This one</li>
+            <li>that one</li>
+            <li>This one</li>
+            <li>that one</li>
+        </ol>
+    </div>
+    <div id=userposts>
+        <h3>User Forum Posts</h3>
+        <ol>
+            <li>This one</li>
+            <li>that one</li>
+            <li>This one</li>
+            <li>that one</li>
+            <li>This one</li>
+            <li>that one</li>
+            <li>This one</li>
+            <li>that one</li>
+            <li>This one</li>
+            <li>that one</li>
+            <li>This one</li>
+            <li>that one</li>
+            <li>This one</li>
+            <li>that one</li>
+            <li>This one</li>
+            <li>that one</li>
+        </ol>
+    </div>
+  </body>
+</html>
+
+
